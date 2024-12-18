@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const links = [
   {
@@ -24,12 +24,70 @@ const links = [
 ];
 
 export default function App() {
+  const [btnActive, setBtnActive] = useState(false);
+
   return (
     <div>
       <header className="header">
         <NavBar links={links} />
 
-        <div className="triangle"></div>
+        <section className="hero">
+          <div className="hero-texts">
+            <div className="hero-texts--text">
+              <h1 className="hero-texts--heading">Transform</h1>
+              <h2 className="orange-accent hero-texts--heading">Your Body</h2>
+
+              <p class="hero-texts--subtexts">
+                Join us to sculpt your dream physique and embrace a healthier,
+                more vibrant life!
+              </p>
+            </div>
+
+            <button
+              className={
+                btnActive
+                  ? "hero__texts-btn hero-btn-active"
+                  : "hero__texts-btn b-active"
+              }
+              onMouseEnter={() => setBtnActive(true)}
+              onMouseLeave={() => setBtnActive(false)}
+            >
+              <a href="#">
+                Get Moving
+                <span
+                  className={
+                    btnActive
+                      ? "arr-right arr-right-active "
+                      : "arr-right b-active"
+                  }
+                >
+                  &rarr;
+                </span>
+              </a>
+            </button>
+          </div>
+
+          <div className="hero__imgs">
+            <div className="hero__imgs-img hero__imgs-img-female">
+              <img
+                src="./img/landingPage-female.png"
+                alt="gym girl"
+                width="300"
+                height="300"
+              />
+            </div>
+
+            <div className="hero__imgs-img hero__imgs-img-male">
+              <img
+                src="./img/landingPage-male.png"
+                alt="gym boy"
+                width="300"
+                height="300"
+              />
+            </div>
+          </div>
+        </section>
+        <div className="hero__triangle"></div>
       </header>
 
       <main className="main"></main>
@@ -39,32 +97,37 @@ export default function App() {
 
 function NavBar({ links }) {
   const [slide, setSlide] = useState(false);
+  const [hide, setHide] = useState(false);
 
   function handleSlideMenu() {
     setSlide(!slide);
+    setHide(!hide);
   }
 
   return (
     <nav className="nav-bar">
       <NavBarLogo />
       <NavBarMenuBar slideMenu={handleSlideMenu} />
-      <NavBarSlideCard
-        links={links}
-        slideMenu={handleSlideMenu}
-        slide={slide}
-      />
+      {hide && (
+        <NavBarSlideCard
+          links={links}
+          slideMenu={handleSlideMenu}
+          slide={slide}
+          hide={hide}
+        />
+      )}
     </nav>
   );
 }
 
 function NavBarLogo() {
   return (
-    <div className="nav-bar--logo">
+    <a href="#" className="nav-bar--logo">
       <figure className="nav-bar--logo-img">
         <img src="./img/logo-orange.png" alt="logo" width="100" height="100" />
       </figure>
       <div className="nav-bar--logo-text">CoreFit</div>
-    </div>
+    </a>
   );
 }
 
@@ -88,15 +151,11 @@ function NavBarMenuBar({ slideMenu }) {
   );
 }
 
-function NavBarSlideCard({ slide, slideMenu, links }) {
+function NavBarSlideCard({ slide, slideMenu, links, hide }) {
   return (
-    <section
-      className={`menuCard ${slide ? "slide-down" : "slide-up"}`}
-      // onClick={slideMenu}
-    >
+    <section className={`menuCard ${slide ? "slide-down" : "slide-up"}`}>
       <NavBarCloseBar slideMenu={slideMenu} />
       <NavBarLinks links={links} />
-      {/* <NavBarLinksLinks /> */}
     </section>
   );
 }

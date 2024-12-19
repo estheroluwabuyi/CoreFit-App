@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Parisienne&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sacramento&display=swap");
 
 :root {
   /* COLORS */
@@ -10,6 +10,8 @@
   /* FONTS */
   --FS-P: "Poppins", sans-serif;
   --FS-R: "Roboto", sans-serif;
+  --FS-DS: "Dancing Script", serif;
+  /* --FS-PE: "Parisienne", serif; */
 }
 
 *,
@@ -287,13 +289,13 @@ button {
 
 .hero__imgs-img-female {
   width: 250px;
-  transform: translateX(7rem);
+  transform: translateX(8.5rem);
   z-index: 1;
 }
 
 .hero__imgs-img-male {
   width: 300px;
-  transform: translateX(-7rem);
+  transform: translateX(-8.5rem);
 }
 
 .hero__imgs-img img {
@@ -303,9 +305,83 @@ button {
 
 /* MAIN */
 .main {
-  height: 100vh;
-  background: red;
+  background: var(--BLACK);
   width: 100%;
+  padding: 5.5rem 1.5rem;
+}
+
+.main-brand-imgs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.main-brand-imgs--img {
+  width: 150px;
+}
+
+.main-brand-imgs--img img {
+  width: 100%;
+  height: auto;
+}
+
+.mainCards-heading {
+  text-align: center;
+  line-height: 1.7;
+}
+
+.mainCards-heading-heading {
+  font-family: var(--FS-DS);
+  color: var(--ORANGE);
+  margin-top: 5rem;
+  letter-spacing: 2px;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+}
+
+.mainCards-heading-subheading {
+  text-transform: capitalize;
+  font-size: clamp(1.5rem, 5vw, 5rem);
+  font-family: var(--FS-P);
+  text-shadow: 2px 2px 5px rgba(255, 140, 0, 0.474);
+  letter-spacing: 1px;
+}
+
+.mainCards-heading-subheading span {
+  color: var(--ORANGE);
+}
+
+.mainCards-cards {
+}
+
+.mainCards-cards--img {
+  width: 5rem;
+  height: 5rem;
+  background: var(--BLACK);
+  border: 2px solid var(--ORANGE);
+  border-radius: 50%;
+}
+
+.mainCards-cards--img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: contain;
+  padding: 0.2rem;
+}
+
+.mainCards-cards--sect {
+  margin-bottom: 2rem;
+}
+
+.mainCards-cards--heading {
+  font-size: clamp(1.5rem, 2.7vw, 2rem);
+  font-family: var(--FS-P);
+  margin: 1.2rem 0;
+}
+
+.mainCards-cards--texts {
 }
 
 /* KEYFRAMES */
@@ -380,7 +456,7 @@ button {
 
   .hero__imgs-img-male {
     width: 700px;
-    transform: translate(-8rem, 0.2rem);
+    transform: translate(-8rem, 2rem);
   }
 
   .hero-texts--text {

@@ -1,52 +1,56 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const links = [
   {
     Title: "Home",
-    Id: 101,
+    id: 101,
   },
   {
     Title: "List",
-    Id: 102,
+    id: 102,
   },
   {
     Title: "Program",
-    Id: 103,
+    id: 103,
   },
   {
     Title: "Choose Us",
-    Id: 104,
+    id: 104,
   },
   {
     Title: "Register Now",
-    Id: 105,
+    id: 105,
   },
 ];
 
 const mainCards = [
   {
-    Img: "/img/female-yoga.png",
-    Heading: "Flex Muscle",
-    Text: "Lorem Ipsum.....",
-    Id: 2,
+    Img: "/img/icons/lotus.png",
+    Heading: "Yoga & Flex",
+    subHeading: "Find Your Balance",
+    Text: "Improve flexibility, reduce stress, and achieve inner peace with guided yoga sessions.",
+    id: 2,
   },
   {
-    Img: "/img/male-yoga.png",
-    Heading: "Cardio Exercise",
-    Text: "Lorem Ipsum.....",
-    Id: 11,
+    Img: "/img/icons/body-abs.png",
+    Heading: "Strength Build",
+    subHeading: "Build Strength, Build You",
+    Text: "Target every muscle group with expert-led strength and resistance training.",
+    id: 11,
   },
   {
-    Img: "/img/female-yoga.png",
-    Heading: "Basic Yoga",
-    Text: "Lorem Ipsum.....",
-    Id: 9,
+    Img: "/img/icons/dumbbell.png",
+    Heading: "Cardio Blast",
+    subHeading: "Elevate Your Heart Rate",
+    Text: "Burn calories, boost stamina, and energise your body with dynamic cardio workouts",
+    id: 9,
   },
   {
-    Img: "/img/male-yoga.png",
-    Heading: "Weight Lifting",
-    Text: "Lorem Ipsum.....",
-    Id: 27,
+    Img: "/img/icons/people.png",
+    Heading: "Personal Coach",
+    subHeading: "Your Goals, Our Mission",
+    Text: "Work one-on-one with certified trainers to achieve your unique fitness goal.",
+    id: 27,
   },
 ];
 
@@ -147,11 +151,11 @@ function NavBarCloseBar({ slideMenu }) {
 }
 
 function NavBarLinks({ links }) {
-  const [activeID, setActiveID] = useState(null);
+  const [activeid, setActiveid] = useState(null);
 
   function handleClick(e, id) {
     e.preventDefault();
-    setActiveID(id);
+    setActiveid(id);
   }
 
   // pass in the slideCard state and say that if the state is false then the links should state should g bck to null
@@ -161,19 +165,19 @@ function NavBarLinks({ links }) {
       <ul className="menu-lists-ul">
         {links.map((link, index) => (
           <li
-            key={link.Id}
+            key={link.id}
             className={
               index === links.length - 1
                 ? `${
-                    activeID === link.Id
+                    activeid === link.id
                       ? "menu-lists-btn btn-active"
                       : "menu-lists-btn"
                   }`
-                : activeID === link.Id
+                : activeid === link.id
                 ? "link-active list"
                 : "not-link-active list"
             }
-            onClick={(e) => handleClick(e, link.Id)}
+            onClick={(e) => handleClick(e, link.id)}
           >
             <a href="#">{link.Title}</a>
           </li>
@@ -221,10 +225,9 @@ function HeroTexts({ btnActive, setBtnActive }) {
         <a href="#">
           Get Moving
           <span
-            className={
-              btnActive ? "arr-right arr-right-active " : "arr-right b-active"
-            }
+            className={btnActive ? "arr-right arr-right-active " : "arr-right"}
           >
+            {/* b-active */}
             &rarr;
           </span>
         </a>
@@ -267,20 +270,20 @@ function Main({ main }) {
 }
 
 function MainBrandImgsImg() {
+  const brandImages = [
+    "./img/logo4.png",
+    "./img/logo1.png",
+    "./img/logo2.png",
+    "./img/logo3.png",
+  ];
+
   return (
     <div className="main-brand-imgs">
-      <MainBrandImgs>
-        <img src="./img/logo4.png" width="100" height="100" alt="brandImg" />
-      </MainBrandImgs>
-      <MainBrandImgs>
-        <img src="./img/logo1.png" width="100" height="100" alt="brandImg" />
-      </MainBrandImgs>
-      <MainBrandImgs>
-        <img src="./img/logo2.png" width="100" height="100" alt="brandImg" />
-      </MainBrandImgs>
-      <MainBrandImgs>
-        <img src="./img/logo3.png" width="100" height="100" alt="brandImg" />
-      </MainBrandImgs>
+      {brandImages.map((src, index) => (
+        <MainBrandImgs key={index}>
+          <img src={src} width="100" height="100" alt="brandImg" />
+        </MainBrandImgs>
+      ))}
     </div>
   );
 }
@@ -310,15 +313,42 @@ function MainCardsHeading() {
 }
 
 function MainCardsCards({ main }) {
+  const [activeid, setActiveid] = useState(null);
+
   return (
     <div className="mainCards-cards">
       {main.map((i) => (
-        <section key={i.Id} className="mainCards-cards--sect">
+        <section
+          key={i.id}
+          className={
+            activeid === i.id
+              ? "mainCards-cards--sect mainCards-cards--sect active"
+              : "mainCards-cards--sect"
+          }
+          onMouseEnter={() => setActiveid(i.id)}
+          onMouseLeave={() => setActiveid(null)}
+          onTouchStart={() => setActiveid(i.id)}
+        >
           <figure className="mainCards-cards--img">
             <img src={i.Img} alt={i.Img} width="50" height="50" />
           </figure>
           <h2 className="mainCards-cards--heading">{i.Heading}</h2>
+          <h4
+            className={
+              activeid === i.id
+                ? "mainCards-cards--sub-heading Active"
+                : "mainCards-cards--sub-heading"
+            }
+          >
+            {i.subHeading}
+          </h4>
           <p className="mainCards-cards--texts">{i.Text}</p>
+
+          {activeid === i.id && (
+            <a href="#" className="mainCards-cards--textsArr arr-right">
+              &rarr;
+            </a>
+          )}
         </section>
       ))}
     </div>

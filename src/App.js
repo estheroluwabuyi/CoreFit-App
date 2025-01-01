@@ -151,11 +151,11 @@ function NavBarCloseBar({ slideMenu }) {
 }
 
 function NavBarLinks({ links }) {
-  const [activeid, setActiveid] = useState(null);
+  const [activeId, setActiveId] = useState(null);
 
   function handleClick(e, id) {
     e.preventDefault();
-    setActiveid(id);
+    setActiveId(id);
   }
 
   // pass in the slideCard state and say that if the state is false then the links should state should g bck to null
@@ -169,11 +169,11 @@ function NavBarLinks({ links }) {
             className={
               index === links.length - 1
                 ? `${
-                    activeid === link.id
+                    activeId === link.id
                       ? "menu-lists-btn btn-active"
                       : "menu-lists-btn"
                   }`
-                : activeid === link.id
+                : activeId === link.id
                 ? "link-active list"
                 : "not-link-active list"
             }
@@ -239,25 +239,33 @@ function HeroTexts({ btnActive, setBtnActive }) {
 function HeroImgs() {
   return (
     <div className="hero__imgs">
-      <div className="hero__imgs-img hero__imgs-img-female">
+      <HeroImgFemale>
         <img
           src="./img/landingPage-female.png"
           alt="gym girl"
           width="300"
           height="300"
         />
-      </div>
+      </HeroImgFemale>
 
-      <div className="hero__imgs-img hero__imgs-img-male">
+      <HeroImgMale>
         <img
           src="./img/landingPage-male.png"
           alt="gym boy"
           width="300"
           height="300"
         />
-      </div>
+      </HeroImgMale>
     </div>
   );
+}
+
+function HeroImgFemale({ children }) {
+  return <div className="hero__imgs-img hero__imgs-img-female">{children}</div>;
+}
+
+function HeroImgMale({ children }) {
+  return <div className="hero__imgs-img hero__imgs-img-male">{children}</div>;
 }
 
 function Main({ main }) {
@@ -265,6 +273,7 @@ function Main({ main }) {
     <main className="main">
       <MainBrandImgsImg />
       <MainCards main={main} />
+      <AboutUs />
     </main>
   );
 }
@@ -295,25 +304,29 @@ function MainBrandImgs({ children }) {
 function MainCards({ main }) {
   return (
     <div>
-      <MainCardsHeading />
+      <MainHeading
+        heading="Our Program"
+        subheading="Build your"
+        highlight="dream body"
+      />
       <MainCardsCards main={main} />
     </div>
   );
 }
 
-function MainCardsHeading() {
+function MainHeading({ heading, subheading, highlight }) {
   return (
-    <div className="mainCards-heading">
-      <h2 className="mainCards-heading-heading">Our Program</h2>
-      <p className="mainCards-heading-subheading">
-        build your <span>dream body</span>
+    <div className="main-heading">
+      <h2 className="main-heading-title">{heading}</h2>
+      <p className="main-heading-subtitle">
+        {subheading} <span>{highlight}</span>
       </p>
     </div>
   );
 }
 
 function MainCardsCards({ main }) {
-  const [activeid, setActiveid] = useState(null);
+  const [activeId, setActiveId] = useState(null);
 
   return (
     <div className="mainCards-cards">
@@ -321,13 +334,13 @@ function MainCardsCards({ main }) {
         <section
           key={i.id}
           className={
-            activeid === i.id
+            activeId === i.id
               ? "mainCards-cards--sect mainCards-cards--sect active"
               : "mainCards-cards--sect"
           }
-          onMouseEnter={() => setActiveid(i.id)}
-          onMouseLeave={() => setActiveid(null)}
-          onTouchStart={() => setActiveid(i.id)}
+          onMouseEnter={() => setActiveId(i.id)}
+          onMouseLeave={() => setActiveId(null)}
+          onTouchStart={() => setActiveId(i.id)}
         >
           <figure className="mainCards-cards--img">
             <img src={i.Img} alt={i.Img} width="50" height="50" />
@@ -335,7 +348,7 @@ function MainCardsCards({ main }) {
           <h2 className="mainCards-cards--heading">{i.Heading}</h2>
           <h4
             className={
-              activeid === i.id
+              activeId === i.id
                 ? "mainCards-cards--sub-heading Active"
                 : "mainCards-cards--sub-heading"
             }
@@ -344,13 +357,39 @@ function MainCardsCards({ main }) {
           </h4>
           <p className="mainCards-cards--texts">{i.Text}</p>
 
-          {activeid === i.id && (
+          {activeId === i.id && (
             <a href="#" className="mainCards-cards--textsArr arr-right">
               &rarr;
             </a>
           )}
         </section>
       ))}
+    </div>
+  );
+}
+
+function AboutUs() {
+  return (
+    <section className="about-us">
+      <AboutUsTexts />
+    </section>
+  );
+}
+
+function AboutUsTexts() {
+  return (
+    <div className="about-us--texts">
+      <MainHeading
+        heading="your fitness, our commitment"
+        subheading="why"
+        highlight="choose us?"
+      />
+
+      <p className="about-us--texts-text">
+        Your goals are our priority. Experience personalised training, a
+        supportive community, and state-of-the-art facilities designed to keep
+        you motivated every step of the way.
+      </p>
     </div>
   );
 }

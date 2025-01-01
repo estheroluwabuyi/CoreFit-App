@@ -330,20 +330,23 @@ button {
   height: auto;
 }
 
-.mainCards-heading {
+/* WHAT WE DO */
+
+.main-heading {
   text-align: center;
   line-height: 1.7;
 }
 
-.mainCards-heading-heading {
+.main-heading-title {
   font-family: var(--FS-DS);
   color: var(--ORANGE);
   margin-top: 5rem;
   letter-spacing: 2px;
   font-size: clamp(1.7rem, 4vw, 3rem);
+  text-transform: capitalize;
 }
 
-.mainCards-heading-subheading {
+.main-heading-subtitle {
   text-transform: capitalize;
   font-size: clamp(1.5rem, 5vw, 5rem);
   font-family: var(--FS-P);
@@ -351,7 +354,7 @@ button {
   letter-spacing: 1px;
 }
 
-.mainCards-heading-subheading span {
+.main-heading-subtitle span {
   color: var(--ORANGE);
 }
 
@@ -381,6 +384,7 @@ button {
 .mainCards-cards--sect {
   margin-bottom: 2rem;
   width: 230px;
+  min-width: 50px;
   display: flex;
   flex-direction: column;
   height: 300px;
@@ -400,7 +404,7 @@ button {
 
 .mainCards-cards--sub-heading {
   margin-bottom: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-style: italic;
   font-weight: 300;
   text-shadow: 2px 5px 5px rgba(255, 140, 0, 0.474);
@@ -409,9 +413,9 @@ button {
 }
 
 .mainCards-cards--texts {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   line-height: 1.5;
-  opacity: 0.7;
+  opacity: 0.8;
   letter-spacing: 0.05rem;
   text-align: center;
 }
@@ -431,6 +435,19 @@ button {
 
 .mainCards-cards--sub-heading.Active {
   font-weight: 500;
+}
+
+/*ABOUT US*/
+.about-us {
+  margin: 10rem 0 5rem 0;
+}
+
+.about-us--texts-text {
+  margin: 2rem 0;
+  opacity: 0.8;
+  letter-spacing: 0.03rem;
+  line-height: 1.5;
+  text-align: center;
 }
 
 /* KEYFRAMES */

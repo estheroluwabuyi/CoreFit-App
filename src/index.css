@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Parisienne&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sacramento&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap");
 
 :root {
   /* COLORS */
@@ -12,7 +12,7 @@
 
   /* FONTS */
   --FS-P: "Poppins", sans-serif;
-  --FS-R: "Roboto", sans-serif;
+  --FS-R: "Red Hat Display", serif;
   --FS-DS: "Dancing Script", serif;
   /* --FS-PE: "Parisienne", serif; */
 }
@@ -31,7 +31,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-size: 1.4rem;
+  font-size: 1.55rem;
   color: var(--BODYWHITE);
   font-family: var(--FS-R);
 }
@@ -310,7 +310,7 @@ button {
 .main {
   background: var(--BLACK);
   width: 100%;
-  padding: 5.5rem 1.5rem;
+  padding: 5.5rem 0;
 }
 
 .main-brand-imgs {
@@ -331,7 +331,6 @@ button {
 }
 
 /* WHAT WE DO */
-
 .main-heading {
   text-align: center;
   line-height: 1.7;
@@ -413,9 +412,9 @@ button {
 }
 
 .mainCards-cards--texts {
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   line-height: 1.5;
-  opacity: 0.8;
+  /* opacity: 0.8; */
   letter-spacing: 0.05rem;
   text-align: center;
 }
@@ -440,14 +439,37 @@ button {
 /*ABOUT US*/
 .about-us {
   margin: 10rem 0 5rem 0;
+  position: relative;
+  z-index: 1;
 }
 
-.about-us--texts-text {
-  margin: 2rem 0;
-  opacity: 0.8;
+.about-us--texts-details {
+  padding: 2rem;
   letter-spacing: 0.03rem;
   line-height: 1.5;
   text-align: center;
+}
+
+.about-us--highlight-flex {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1rem;
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.about-us--highlight-value {
+  color: var(--ORANGE);
+  font-family: var(--FS-DS);
+  font-size: clamp(1.5rem, 3.5vw, 3.5rem);
+  margin-bottom: 0.7rem;
+}
+
+.aboutUs-triangle {
+  left: 0;
+  clip-path: polygon(0 0, 0% 100%, 100% 100%);
+  z-index: -1;
 }
 
 /* KEYFRAMES */

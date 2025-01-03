@@ -372,6 +372,8 @@ function AboutUs() {
   return (
     <section className="about-us">
       <AboutUsTexts />
+      <AboutUsImages />
+      <div className="hero__triangle aboutUs-triangle"></div>
     </section>
   );
 }
@@ -384,12 +386,57 @@ function AboutUsTexts() {
         subheading="why"
         highlight="choose us?"
       />
+      <AboutUsDetails />
 
-      <p className="about-us--texts-text">
-        Your goals are our priority. Experience personalised training, a
-        supportive community, and state-of-the-art facilities designed to keep
-        you motivated every step of the way.
-      </p>
+      <div className="about-us--highlight-flex">
+        <AboutUsHighlights value="150+" label="Happy Clients" />
+        <AboutUsHighlights value="20+" label="Expert Coaches" />
+        <AboutUsHighlights value="15+" label="Custom Plans" />
+        <AboutUsHighlights value="50+" label="Success Stories" />
+      </div>
+    </div>
+  );
+}
+
+function AboutUsDetails() {
+  return (
+    <p className="about-us--texts-details">
+      Your goals are our priority. Experience personalised training, a
+      supportive community, and state-of-the-art facilities designed to keep you
+      motivated every step of the way.
+    </p>
+  );
+}
+
+function AboutUsHighlights({ value, label }) {
+  return (
+    <div className="about-us--highlight">
+      <h1 className="about-us--highlight-value">{value}</h1>
+      <p className="about-us--highlight-label">{label}</p>
+    </div>
+  );
+}
+
+function AboutUsImages() {
+  return (
+    <div className="">
+      <div className="hero__imgs-img hero__imgs-img-female">
+        <img
+          src="./img/landingPage-female.png"
+          alt="gym girl"
+          width="300"
+          height="300"
+        />
+      </div>
+
+      <div className="hero__imgs-img hero__imgs-img-male">
+        <img
+          src="./img/landingPage-male.png"
+          alt="gym boy"
+          width="300"
+          height="300"
+        />
+      </div>
     </div>
   );
 }

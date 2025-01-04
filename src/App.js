@@ -54,6 +54,42 @@ const mainCards = [
   },
 ];
 
+const pricingPlans = [
+  {
+    image: "./img/pricing1.png",
+    title: "BASIC PLAN",
+    price: 99,
+    perks: [
+      "3 Days per Week Access",
+      "Access to Standard Classes",
+      "Access to CoreFit Mobile App",
+      "1 Complimentary Gym Merchandise",
+    ],
+  },
+  {
+    image: "./img/pricing2.png",
+    title: "PREMIUM PLAN",
+    price: 199,
+    perks: [
+      "5 Days Per Week Access",
+      "Access to All Classes",
+      "1 Personal Training Session Per Month",
+      "Complimentary Gym Kit",
+    ],
+  },
+  {
+    image: "./img/pricing3.png",
+    title: "ELITE PLAN",
+    price: 299,
+    perks: [
+      "Unlimited Access",
+      "Access to VIP Classes",
+      "Weekly Personal Training Sessions",
+      "Full Gym Merchandise Kit",
+    ],
+  },
+];
+
 export default function App() {
   const [btnActive, setBtnActive] = useState(false);
 
@@ -65,7 +101,7 @@ export default function App() {
         <HeroTriangle />
       </header>
 
-      <Main main={mainCards} />
+      <Main main={mainCards} pricing={pricingPlans} />
     </div>
   );
 }
@@ -268,12 +304,13 @@ function HeroImgMale({ children }) {
   return <div className="hero__imgs-img hero__imgs-img-male">{children}</div>;
 }
 
-function Main({ main }) {
+function Main({ main, pricing }) {
   return (
     <main className="main">
       <MainBrandImgsImg />
       <MainCards main={main} />
       <AboutUs />
+      <Pricing pricing={pricing} />
     </main>
   );
 }
@@ -371,8 +408,10 @@ function MainCardsCards({ main }) {
 function AboutUs() {
   return (
     <section className="about-us">
-      <AboutUsTexts />
-      <AboutUsImages />
+      <div className="about-us--text-imgs">
+        <AboutUsTexts />
+        <AboutUsImages />
+      </div>
       <div className="hero__triangle aboutUs-triangle"></div>
     </section>
   );
@@ -419,24 +458,71 @@ function AboutUsHighlights({ value, label }) {
 
 function AboutUsImages() {
   return (
-    <div className="">
-      <div className="hero__imgs-img hero__imgs-img-female">
-        <img
-          src="./img/landingPage-female.png"
-          alt="gym girl"
-          width="300"
-          height="300"
-        />
-      </div>
-
-      <div className="hero__imgs-img hero__imgs-img-male">
-        <img
-          src="./img/landingPage-male.png"
-          alt="gym boy"
-          width="300"
-          height="300"
-        />
-      </div>
+    <div className="about-us--img">
+      <img
+        src="./img/landing-page female.png"
+        alt="gym boy"
+        width="300"
+        height="300"
+      />
     </div>
   );
 }
+
+// function Pricing({ pricing }) {
+//   return (
+//     <div >
+//       <MainHeading heading="Pricing" subheading="pick" highlight="your plan" />
+
+//       <div>
+//         <PricingSection pricing={pricing} />
+//       </div>
+//     </div>
+//   );
+// }
+
+function Pricing({ pricing }) {
+  return (
+    <div className="pricing">
+      <MainHeading heading="Pricing" subheading="pick" highlight="your plan" />
+
+      {pricing.map((plan, index) => (
+        <PricingCard
+          key={index}
+          title={plan.title}
+          price={plan.price}
+          perks={plan.perks}
+          img={plan.image}
+        />
+      ))}
+    </div>
+  );
+}
+
+function PricingCard({ title, price, perks, img }) {
+  return (
+    <section className="pricing-card">
+      <div className="pricing-card--img">
+        <img src={img} width="50" height="50" alt={title} />
+      </div>
+      <h2 className="pricing-card--title">{title}</h2>
+      <h1 className="pricing-card--price">${price}/month</h1>
+
+      <ul className="pricing-perks">
+        {perks.map((perk, index) => (
+          <li className="pricing-perks--list">
+            <ion-icon name="checkmark-circle-outline"></ion-icon>
+            <div key={index} className="perk-item">
+              {perk}
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <button className="hero__texts-btn b-active">
+        <a href="#">Unlock Now &rarr;</a>
+      </button>
+    </section>
+  );
+}
+// <ion-icon name="checkmark-circle-outline"></ion-icon>
